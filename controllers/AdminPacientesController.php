@@ -45,17 +45,20 @@ class AdminPacientesController
     public static function pacientesRegistrar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $paciente = new Paciente($_POST['paciente']);
             $usuario = new Login($_POST['usuario']);
+            $email = obtenerEmail();
 
+            $paciente = new Paciente($_POST['paciente']);
             $mensaje = $paciente->validar();
             if (empty($mensaje)) {
-                //REGISTRAR PACIENTE
-                $resultado = $paciente->save();
+                //GUARDAR USUARIO
+                $resultado = $usuario->insert();
 
+                //BUSCAR USUARIO
+                $user = $usuario->searchUser($email);
                 if ($resultado) {
-                    //GUARDAR USUARIO
-                    $usuario->insert();
+                    //REGISTRAR PACIENTE
+                    $paciente->Registrar($user->id);
                     header('Location: /admin/pacientes');
                 }
             }

@@ -27,14 +27,13 @@ class Medico extends ActiveRecord
         $this->Nombre = $args['Nombre'] ?? '';
         $this->Ape_Paterno = $args['Ape_Paterno'] ?? '';
         $this->Ape_Materno = $args['Ape_Materno'] ?? '';
-        $this->Edad = $args['Edad'] ?? '';
         $this->Genero = $args['Genero'] ?? '';
         $this->T_Doc = $args['T_Doc'] ?? '';
         $this->Nro_Doc = $args['Nro_Doc'] ?? '';
         $this->Telefono = $args['Telefono'] ?? '';
-        $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? 'GETDATE()';
+        $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? '';
         $this->Estado = $args['Estado'] ?? 'Activo';
-        $this->Estado = $args['id_login'] ?? '';
+        $this->id_login = $args['id_login'] ?? '';
     }
 
     //INSERT EN LA DATABASE

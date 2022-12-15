@@ -127,7 +127,6 @@
     document.querySelector('#T_Doc [value="' + $datos[6] + '"]').selected = true;
     document.getElementById("Nro_Doc").value = $datos[7];
     document.getElementById("Telefono").value = $datos[8];
-    document.getElementById("id_login").value = $datos[11];
 
     const text = $datos[1];
     const $select = document.querySelector('#ID_Especialidad');

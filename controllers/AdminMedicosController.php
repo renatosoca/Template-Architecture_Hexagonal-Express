@@ -29,8 +29,6 @@ class AdminMedicosController
     //AGREGAR MEDICOS   => Falta solucionar el TIPO_USUARIO
     public static function medicoAgregar()
     {
-        $medico = new Medico();
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario = new Login($_POST['usuario']);
             $email = obtenerEmail();
