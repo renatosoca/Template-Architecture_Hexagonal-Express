@@ -235,6 +235,13 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public static function findCitaMedico($id) {
+        $query = "SELECT * FROM " . static::$tabla . " WHERE ID_Medico = ${id} AND Estado='Espera'";
+
+        $resultado = self::consultSQL($query);
+        return $resultado;
+    }
+
     public static function searchUser($name){
         $query = "SELECT * FROM " . static::$tabla . " WHERE email = '${name}' ";
 

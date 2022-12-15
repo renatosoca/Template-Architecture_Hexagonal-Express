@@ -19,6 +19,7 @@
         public $DNIPaciente;
         public $NombreMedico;
         public $Diagnostico;
+        public $Edad;
 
         public function __construct( $args = [])
         {
@@ -35,6 +36,7 @@
             $this->NombreMedico = $args['NombreMedico'] ?? '';
             $this->DNIPaciente = $args['DNIPaciente'] ?? '';
             $this->Diagnostico = $args['Diagnostico'] ?? '';
+            $this->Edad = $args['Edad'] ?? '';
         }
 
         public function Registrar() {

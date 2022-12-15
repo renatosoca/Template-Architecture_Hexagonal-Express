@@ -4,68 +4,39 @@
             <div
             class="d-sm-flex align-items-center justify-content-between mb-4"
           >
-            <h1 class="h3 mb-0 text-gray-800">CITAS POR DÍA:</h1>
+            <h1 class="h3 mb-0 text-gray-800">CITAS:</h1>
             <input type="date" name="" id="">
             <button class="btn btn-primary"> FILTRAR</button>
           </div>
           <!--Fin Page Heading -->
 
-          <div style="padding: 10px;" class="container table-responsive">
+          <div style="padding: 10px; width: 70rem;" class="container table-responsive">
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col"># CITA</th>
-                    <th scope="col">FECHA</th>
-                    <th scope="col">HORA</th>
-                    <th scope="col">PACIENTE</th>
-                    <th scope="col">ACCIONES</th>
+                    <th >DNI</th>
+                    <th >NOMBRE PACIENTE</th>
+                    <th >EDAD</th>
+                    <th >HORA</th>
+                    <th >ACCIONES</th>
                   </tr>
                 </thead>
                 <tbody>
+                <?php foreach ($citas as $row) { ?>
                   <tr>
-                    <td>12345</td>
-                    <td>12/12/12</td>
-                    <td>08:00</td>
-                    <td>Panchito Sanchez</td>
+                    <td><?php echo $row->DNIPaciente ?></td>
+                    <td><?php echo $row->NombrePaciente ?></td>
+                    <td><?php echo $row->Edad?></td>
+                    <td><?php echo $row->Hora_Cita ?></td>
                     <td>
-                        <a
-                            class="btn btn-success"
-                            data-bs-toggle="modal"
-                            href="#fichaMedica"
-                            role="button"
-                            > </i> Ficha Medica
-                     </a>
-                     <a
-                            class="btn btn-secondary"
-                            data-bs-toggle="modal"
-                            href="#recetaMedica"
-                            role="button"
-                            > Receta Medica 
-                     </a>
+                      <form action="/doctor/entrarcita" method="post">
+                        <input type="text" name="id" value="<?php echo $row->id ?>" hidden>
+                      <button type="submit" class="btn btn-success">Entrar a cita</button>
+                      </form>
+                       
                     </td>
                   </tr>
-                  <tr>
-                    <td>12345</td>
-                    <td>12/12/12</td>
-                    <td>08:30</td>
-                    <td>Panchito Sanchez</td>
-                    <td>
-                        <a
-                            class="btn btn-success"
-                            data-bs-toggle="modal"
-                            href="#fichaMedica"
-                            role="button"
-                            > </i> Ficha Medica
-                     </a>
-                     <a
-                            class="btn btn-secondary"
-                            data-bs-toggle="modal"
-                            href="#recetaMedica"
-                            role="button"
-                            > Receta Medica 
-                     </a>
-                    </td>
-                  </tr>
+                  <?php } ?>
                 </tbody>
               </table>
 
@@ -77,93 +48,6 @@
                 padding: 65px;
             }
         </style>
-        <!--MODALES USADOS-->
-            <!--AGREGAR FICHA MÉDICA-->
-            <div
-            class="modal fade"
-            id="fichaMedica"
-            data-bs-backdrop="static" data-bs-keyboard="false"
-            aria-hidden="true"
-            aria-labelledby="exampleModalToggleLabel2"
-            tabindex="-1"
-            >
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="staticBackdropLabel">FICHA MÉDICA</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                
-                    <div class="modal-body">
-                        <form action="">
-                      <div style="font-size: 20px;" class="container">
-                        <div class="row sd">
-                             FICHA MEDICA : 21412421413442
-                        </div>
-                        <div class="row sd">
-                            ESPECIALIDAD: Cardiología
-                        </div>
-                        <div class="row sd" >
-                            MEDICO: Peito Lujan
-                        </div>
-                        <div class="row sd" >
-                            PACIENTE: Panchito Sanchez 
-                        </div>
-                        <div class="row sd">
-                           <b>DIAGNÓSTICO MÉDICO:</b> <input type="text" style="width: 460px;" name="" id="" required> 
-            
-                        </div>
-                        <div class="row sd">
-                        <b>DETALLE MÉDICO:</b>
-                        </div> <textarea name="" id="" cols="47" rows="6" required></textarea>
-                        <div class="row sd">
-                            <b>OBSERVACIONES ADICIONALES:</b> 
-                        </div>
-                        <textarea name="" id="" cols="47" rows="6" required></textarea>
-                        <input type="submit" class="btn btn-primary"  value="INSERTAR DATOS">
-                      </div>
-                    </form>
-                    </div>
-                  
-                  </div>
-            </div>
-            </div>
-            <!-- FIN AGREGAR FICHA MÉDICA-->
-            
-            <!--AGREGAR RECETA MÉDICA-->
-            <div
-            class="modal fade"
-            id="recetaMedica"
-            data-bs-backdrop="static" data-bs-keyboard="false"
-            aria-hidden="true"
-            aria-labelledby="exampleModalToggleLabel2"
-            tabindex="-1"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">RECETA MÉDICA</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="">
-                  <h5>MÉDICO: Jose Salvatierra </h5> 
-                  <h5>PACIENTE:  Julio Andree</h5>
-                  <h5>MEDICINAS RECETADAS:</h5>
-                    <textarea name="" id="" cols="60" rows="6" required></textarea>
-                  <h5>INSTRUCCIONES:</h5>
-                  <textarea name="" id="" cols="60" rows="6" required></textarea>
-                        <input type="submit" class="btn btn-primary"  value="INSERTAR DATOS">
-                </form>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-<!-- FIN AGREGAR RECETA MÉDICA-->
-
-
 
 
      <!-- -->

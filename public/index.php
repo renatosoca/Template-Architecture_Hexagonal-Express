@@ -59,6 +59,7 @@
 
     //Paginas Doctores
     $router->get('/doctor', [DoctorController::class, 'index']);
+    $router->post('/doctor/entrarcita', [DoctorController::class, 'entrarcita']);
     
 
     //Login
