@@ -10,14 +10,22 @@
     use Model\Horario;
     use Model\Paciente;
 
+
     class DoctorController {
         
         public static function index(Router $router) {
 
             $sesion = $_SESSION['id'];
-
             $medico = Medico::findLogin($sesion);
             $citas=Cita::findCitaMedico($medico->id);
+
+            $fecha=null;
+
+            if (isset($_POST['fecha'])) {
+               
+                $fecha= $_POST['fecha']    ;        
+
+            }
 
             foreach ($citas as $row) {
 
@@ -37,6 +45,7 @@
 
                 'medico' => $medico,
                 'citas' => $citas,
+                'fecha' => $fecha,
 
             ]);
         }
