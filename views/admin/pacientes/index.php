@@ -42,6 +42,9 @@
         <a href="#" class="btn btn-primary" onclick="window.print()">
           <i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte
         </a>
+        <a href="./excel_paciente.php" class="btn btn-primary">
+          <i class="fas fa-download fa-sm text-white-50"></i> Generar Excel
+        </a>
       </div>
 
       <div class="mb-3 row">
