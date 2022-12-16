@@ -36,6 +36,15 @@
         </button>
       </div>
 
+      <div class="mb-3 row">
+            <div class="col-2 text-end">
+            <label  class="col-form-label">Buscar codigo:</label>
+            </div>
+            <div class="col-2">
+            <input class="form-control" type="text" placeholder="CODIGO"  id="myInput" onkeyup="BuscarCodigo()" >
+            </div>
+          </div>
+
       <!-- TABLA DE PACIENTES -->
       <div class="card shadow mb-4">
         <div class="card-body">
@@ -516,4 +525,23 @@
 
       document.getElementById("DetalleRepro").appendChild(h4);
     }
+    
+    function BuscarCodigo() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("dataTable1");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+				}       
+			}
+		}
   </script>

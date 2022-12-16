@@ -32,13 +32,12 @@ foreach ($medicos as $row) {
 <!-- CONTENEDOR DE UNA CITA PENDIENTE-->
 <div class="container">
   <?php
-  $i = 1;
   foreach ($citas as $row) { ?>
     <div class="container cita-pendiente">
       <div class="row">
         <div class="col-sm-12">
           <h5 style="color: darkred; font-weight: bolder; font-size: 22px;">
-            CITA: #<?php echo $i++ ?>
+            CODIGO CITA: <?php echo $row->id ?>
           </h5>
         </div>
       </div>

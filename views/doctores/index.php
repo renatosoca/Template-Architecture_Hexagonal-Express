@@ -27,7 +27,7 @@
             <label  class="col-form-label">Buscar DNI:</label>
             </div>
             <div class="col-2">
-            <input class="form-control" type="text"  id="myInput" onkeyup="BuscarDNI()" >
+            <input class="form-control" type="text" placeholder="DNI"  id="myInput" onkeyup="BuscarDNI()" >
             </div>
           </div>
           <!--Fin Page Heading -->

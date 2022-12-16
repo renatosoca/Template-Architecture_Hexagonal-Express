@@ -9,8 +9,17 @@
   <!-- TODAS LAS CITAS PENDIENTES-->
   <div class="container">
     <!-- CONTENEDOR DE UNA CITA PENDIENTE-->
-    <div class="container cita-pendiente">
-      <table class="table">
+    <div class="mb-3 row">
+            <div class="col-2 text-end">
+            <label  class="col-form-label">Buscar Area:</label>
+            </div>
+            <div class="col-2">
+            <input class="form-control" type="text" placeholder="Area" id="myInput" onkeyup="BuscarArea()" >
+            </div>
+          </div>
+
+    <div class="container cita-pendiente">    
+      <table class="table" id="myTable">
         <thead>
           <tr>
             <th scope="col">Especialidad</th>
@@ -76,3 +85,24 @@
     margin: 10px;
   }
 </style>
+
+<script>
+  function BuscarArea() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[0];
+				if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+				}       
+			}
+		}
+</script>
