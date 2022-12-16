@@ -60,6 +60,9 @@
     //Paginas Doctores
     $router->get('/doctor', [DoctorController::class, 'index']);
     $router->post('/doctor/entrarcita', [DoctorController::class, 'entrarcita']);
+    $router->post('/doctor/historia', [DoctorController::class, 'historia']);
+    $router->post('/doctor/ficha', [DoctorController::class, 'fichamedica']);
+    $router->post('/doctor/guardarficha', [DoctorController::class, 'guardarficha']);
     
 
     //Login

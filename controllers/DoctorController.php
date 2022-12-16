@@ -4,7 +4,8 @@
     
     use Router\Router;
     use Model\Medico;
-    use Model\Especialidades;
+    use Model\RecetaMedica;
+    use Model\DetalleMedico;
     use Model\Cita;
     use Model\Horario;
     use Model\Paciente;
@@ -63,5 +64,103 @@
 
             ]);
         }
+
+        public static function historia(Router $router)
+    {
+
+        $citaVolver= $_POST['volver'];
+        $paciente = Paciente::find($_POST['id']);
+        $citas = Cita::findCitaTerminado($paciente->id);
+
+        foreach ($citas as $row) {
+            $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
+            $row->DNIPaciente = $paciente->Nr_Doc;
+
+            $medico = Medico::find($row->ID_Medico);
+            $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+
+            $horario = Horario::find($row->ID_Horario);
+            $row->Fecha_Cita = $horario->Fecha;
+            $row->Hora_Cita = $horario->Hora;
+
+            $detalleMedico = DetalleMedico::findcita($row->id);
+            $row->Diagnostico = $detalleMedico->Diagnostico;
+        }
+
+        $router->render('doctores/Historia', 'layout-medico', [
+            'citas' => $citas,
+            'citaVolver' => $citaVolver,
+        ]);
+    }
+
+    public static function fichamedica(Router $router)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $citaVolver= $_POST['volver'];
+
+            $cita = Cita::find($_POST['IDCita']);
+            $detalleMedico = DetalleMedico::findcita($_POST['IDCita']);
+            $medico = Medico::find($cita->ID_Medico);
+            $cita->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+            $receta = RecetaMedica::findReceta($detalleMedico->id);
+        }
+
+        $router->render('doctores/FichaMedica', 'layout-medico', [
+
+            'cita' => $cita,
+            'detalleMedico' => $detalleMedico,
+            'receta' => $receta,
+            'citaVolver' => $citaVolver,
+
+        ]);
+    }
+
+    public static function guardarficha(Router $router)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+           $detalleMedico=new DetalleMedico($_POST['Detalle']);
+           $detalleMedico->Registrar();
+           
+           $detalle=DetalleMedico::findcita($_POST['Detalle']['ID_Cita']);
+           $receta=new RecetaMedica();
+
+            for ($i=1; $i <= $_POST['recetanumero']; $i++) { 
+            
+                $receta->Registrar($detalle->id,$_POST["Anotacion_{$i}"],$_POST["Descripcion_{$i}"]);
+
+            }
+
+            $cita = Cita::find($_POST['Detalle']['ID_Cita']);
+            $cita->CambiarEstadoCita();
+        }
+
+        $sesion = $_SESSION['id'];
+
+        $medico = Medico::findLogin($sesion);
+        $citas=Cita::findCitaMedico($medico->id);
+
+        foreach ($citas as $row) {
+
+            $paciente=Paciente::find($row->ID_Paciente);
+            $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
+            $row->DNIPaciente = $paciente->Nr_Doc;
+            $row->Edad = $paciente->Edad;
+
+            $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+
+            $horario = Horario::find($row->ID_Horario);
+            $row->Fecha_Cita = $horario->Fecha;
+            $row->Hora_Cita = $horario->Hora;
+        }
+
+        $router->render('doctores/index', 'layout-medico', [
+
+            'medico' => $medico,
+            'citas' => $citas,
+
+        ]);
+    }
 
     }

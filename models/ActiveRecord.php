@@ -88,6 +88,13 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public function CambiarEstadoCita() {
+        $query = "UPDATE " . static::$tabla . " SET Estado= 'Terminado' WHERE id=" . self::$db->escape_string($this->id);
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+    }
+
     public function ActivarEstadoHorario() {
         $query = "UPDATE " . static::$tabla . " SET Estado= 'Disponible' WHERE id=" . self::$db->escape_string($this->id);
         $resultado = self::$db->query($query);
