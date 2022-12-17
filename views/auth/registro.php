@@ -41,7 +41,11 @@
 
       <div class="usuario">
           <label  class="form-label">Ingrese su fecha de nacimiento:</label>
-          <input type="date" name="paciente[Fecha_Nacimiento]" id="" placeholder="Fecha de Nacimiento"  />
+          <input type="date" name="paciente[Fecha_Nacimiento]" id="FN" placeholder="Fecha de Nacimiento"  />
+      </div>
+
+      <div class="usuario">
+          <input type="number" class="col" name="paciente[Edad]" id="Edad" placeholder="Edad" disabled required />
       </div>
 
       <div class="usuario">
@@ -72,3 +76,21 @@
     </div>
   </form>
 </div>
+
+<script>
+    document.getElementById('FN').addEventListener('change', function() {
+        $FN = this.value;
+        $FechaNacimiento= new Date($FN);
+        $fechaActual = new Date();
+
+        $diferencia = $fechaActual.getFullYear() - $FechaNacimiento.getFullYear();
+        
+        $edad = $fechaActual.getMonth() < $FechaNacimiento.getMonth() || 
+            ($fechaActual.getMonth() === $FechaNacimiento.getMonth() && 
+            $fechaActual.getDate() < $FechaNacimiento.getDate())
+            ? $diferencia - 1 
+            : $diferencia;
+
+    document.getElementById("Edad").value=$edad;
+    })
+</script>
