@@ -19,24 +19,28 @@ class PacienteController
     public static function index(Router $router)
     {
         $sesion = $_SESSION['id'];
-
         $paciente = Paciente::findLogin($sesion);
-        $horarios = Horario::allDisponibles();
-        $especialidades = Especialidades::allActivos();
-        $medicos = Medico::allActivos();
+        
+        if ($paciente) {
+            $horarios = Horario::allDisponibles();
+            $especialidades = Especialidades::allActivos();
+            $medicos = Medico::allActivos();
 
-        $citas = Cita::findCitaEspera($paciente->id);
+            $citas = Cita::findCitaEspera($paciente->id);
 
-        foreach ($citas as $row) {
-            $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
-            $row->DNIPaciente = $paciente->Nr_Doc;
+            foreach ($citas as $row) {
+                $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
+                $row->DNIPaciente = $paciente->Nr_Doc;
 
-            $medico = Medico::find($row->ID_Medico);
-            $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+                $medico = Medico::find($row->ID_Medico);
+                $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
 
-            $horario = Horario::find($row->ID_Horario);
-            $row->Fecha_Cita = $horario->Fecha;
-            $row->Hora_Cita = $horario->Hora;
+                $horario = Horario::find($row->ID_Horario);
+                $row->Fecha_Cita = $horario->Fecha;
+                $row->Hora_Cita = $horario->Hora;
+            }
+        } else {
+            header('Location: /');
         }
 
         $router->render('pacientes/index', 'layout-paciente', [

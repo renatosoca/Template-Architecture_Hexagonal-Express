@@ -13,23 +13,27 @@ class AdminCitasController
 {
     public static function citas(Router $router)
     {
-        $especialidades = Especialidades::allActivos();
-        $medicos = Medico::allActivos();
-        $horarios = Horario::allDisponibles();
-        $pacientes = Paciente::allActivos();
-        $citaMostrar = Cita::allEspera();
+        if ($_SESSION['usuario'] == 1) {
+            $especialidades = Especialidades::allActivos();
+            $medicos = Medico::allActivos();
+            $horarios = Horario::allDisponibles();
+            $pacientes = Paciente::allActivos();
+            $citaMostrar = Cita::allEspera();
 
-        foreach ($citaMostrar as $row) {
-            $paciente = Paciente::find($row->ID_Paciente);
-            $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
-            $row->DNIPaciente = $paciente->Nr_Doc;
+            foreach ($citaMostrar as $row) {
+                $paciente = Paciente::find($row->ID_Paciente);
+                $row->NombrePaciente = $paciente->Nombre . " " . $paciente->Ape_Paterno;
+                $row->DNIPaciente = $paciente->Nr_Doc;
 
-            $medico = Medico::find($row->ID_Medico);
-            $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
+                $medico = Medico::find($row->ID_Medico);
+                $row->NombreMedico = $medico->Nombre . " " . $medico->Ape_Paterno;
 
-            $horario = Horario::find($row->ID_Horario);
-            $row->Fecha_Cita = $horario->Fecha;
-            $row->Hora_Cita = $horario->Hora;
+                $horario = Horario::find($row->ID_Horario);
+                $row->Fecha_Cita = $horario->Fecha;
+                $row->Hora_Cita = $horario->Hora;
+            }
+        } else {
+            header('Location: /');
         }
 
         $router->render('admin/citas/index', 'layout-admin', [

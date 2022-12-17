@@ -11,9 +11,13 @@ class ReportesController
 {
     public static function pacienteReporte(Router $router)
     {
-        $paciente = Paciente::all();
-        header("Content-Type: application/xls; charset=iso-8859-1");
-        header("Content-Disposition: attachment; filename=datos-paciente.xls");
+        if ($_SESSION['usuario'] == 1) {
+            $paciente = Paciente::all();
+            header("Content-Type: application/xls; charset=iso-8859-1");
+            header("Content-Disposition: attachment; filename=datos-paciente.xls");
+        } else {
+            header('Location: /');
+        }
 
         $router->render('reports/excel_paciente', 'layout-reporte', [
             'paciente' => $paciente
@@ -22,15 +26,19 @@ class ReportesController
 
     public static function medicoReporte(Router $router)
     {
-        $medicos = Medico::allActivos();
-        $especialidades = Especialidades::allActivos();
-        foreach ($medicos as $row) {
-            $Especialidad = Especialidades::find($row->ID_Especialidad);
-            $row->ID_Especialidad = $Especialidad->Descripcion;
+        if ($_SESSION['usuario'] == 1) {
+            $medicos = Medico::allActivos();
+            $especialidades = Especialidades::allActivos();
+            foreach ($medicos as $row) {
+                $Especialidad = Especialidades::find($row->ID_Especialidad);
+                $row->ID_Especialidad = $Especialidad->Descripcion;
+            }
+            header("Content-Type: application/xls; charset=iso-8859-1");
+            header("Content-Disposition: attachment; filename=datos-medicos.xls");
+        } else {
+            header('Location: /');
         }
-        header("Content-Type: application/xls; charset=iso-8859-1");
-        header("Content-Disposition: attachment; filename=datos-medicos.xls");
-        
+
         $router->render('reports/excel_medico', 'layout-reporte', [
             'medico' => $medicos,
             'especialidad' => $especialidades

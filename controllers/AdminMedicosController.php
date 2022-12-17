@@ -13,11 +13,15 @@ class AdminMedicosController
     //Listado de 
     public static function medicos(Router $router)
     {
-        $medicos = Medico::allActivos();
-        $especialidades = Especialidades::allActivos();
-        foreach ($medicos as $row) {
-            $Especialidad = Especialidades::find($row->ID_Especialidad);
-            $row->ID_Especialidad = $Especialidad->Descripcion;
+        if ($_SESSION['usuario'] == 1) {
+            $medicos = Medico::allActivos();
+            $especialidades = Especialidades::allActivos();
+            foreach ($medicos as $row) {
+                $Especialidad = Especialidades::find($row->ID_Especialidad);
+                $row->ID_Especialidad = $Especialidad->Descripcion;
+            }
+        } else {
+            header('Location: /');
         }
 
         $router->render('admin/medicos/index', 'layout-admin', [

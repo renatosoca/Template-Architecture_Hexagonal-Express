@@ -9,7 +9,11 @@ class AdminEspecialidadController
 {
     public static function especialidades(Router $router)
     {
-        $especialidades = Especialidades::allActivos();
+        if ($_SESSION['usuario'] == 1) {
+            $especialidades = Especialidades::allActivos();
+        } else {
+            header('Location: /');
+        }
 
         $router->render('admin/especialidades/index', 'layout-admin', [
             'especialidades' => $especialidades
@@ -39,7 +43,7 @@ class AdminEspecialidadController
             //OBTENIENDO LOS VALORES DE LOS NAME DEL FORMULARIO
             $id = $_POST['id'];
             $paciente = Especialidades::find($id);
-            
+
             $mensaje = Especialidades::getErrores();
             $args = $_POST['especialidad'];
             $paciente->sincronizar($args);

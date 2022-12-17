@@ -18,7 +18,7 @@
             session_start();
             $auth = $_SESSION['id'] ?? null;
             
-            $rutas_protegidas = ['/paciente', '/doctor'];       //ARREGLO DE RUTAS PROTEGIDAS
+            $rutas_protegidas = ['/paciente', '/doctor','/admin/index', '/pacientes/reporte', '/admin/medicos', '/medicos/reporte', '/admin/citas', '/admin/especialidades', '/paciente/citaspasadas'];       //ARREGLO DE RUTAS PROTEGIDAS
     
             $urlActual = $_SERVER['PATH_INFO'] ?? '/';
             $metodo = $_SERVER['REQUEST_METHOD'];

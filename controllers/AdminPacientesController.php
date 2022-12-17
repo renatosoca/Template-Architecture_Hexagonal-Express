@@ -13,16 +13,22 @@ use Model\RecetaMedica;
 
 class AdminPacientesController
 {
-    
+
     public static function index(Router $router)
     {
-        $paciente = Paciente::all();
-        $medico = Medico::all();
-        $citas = Cita::all();
+        if ($_SESSION['usuario'] == 1) {
+            $paciente = Paciente::all();
+            $medico = Medico::all();
+            $citas = Cita::all();
 
-        $nro_pacientes = sizeof($paciente);
-        $nro_medicos = sizeof($medico);
-        $nro_citas = sizeof($citas);
+            $nro_pacientes = sizeof($paciente);
+            $nro_medicos = sizeof($medico);
+            $nro_citas = sizeof($citas);
+        } else {
+            header('Location: /');
+        }
+
+
 
         $router->render('admin/index', 'layout-admin', [
             'nro_pacientes' => $nro_pacientes,
@@ -34,7 +40,11 @@ class AdminPacientesController
     public static function pacientes(Router $router)
     {
         //Mostramos a los pacientes registrados
-        $pacientes = Paciente::allActivos();
+        if ($_SESSION['usuario'] == 1) {
+            $pacientes = Paciente::allActivos();
+        } else {
+            header('Location: /');
+        }
 
         //registrar pacientes
         $router->render('admin/pacientes/index', 'layout-admin', [
