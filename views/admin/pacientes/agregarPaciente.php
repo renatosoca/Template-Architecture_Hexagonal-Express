@@ -38,7 +38,8 @@
 
                         <div class="row">
                             <label >Fecha de nacimiento:</label>
-                            <input type="date" class="col" name="paciente[Fecha_Nacimiento]" id="" placeholder="Fecha de Nacimiento" required />
+                            <input type="date" class="col" name="paciente[Fecha_Nacimiento]" id="FN" placeholder="Fecha de Nacimiento" required />
+                            <input type="number" class="col" name="paciente[Edad]" id="Edad" placeholder="Edad" disabled required />
                         </div>
 
                         <div class="row">
@@ -68,3 +69,21 @@
     </div>
 </div>
 <!-- FIN--AGREGAR PACIENTE (MODAL) -->
+
+<script>
+    document.getElementById('FN').addEventListener('change', function() {
+        $FN = this.value;
+        $FechaNacimiento= new Date($FN);
+        $fechaActual = new Date();
+
+        $diferencia = $fechaActual.getFullYear() - $FechaNacimiento.getFullYear();
+        
+        $edad = $fechaActual.getMonth() < $FechaNacimiento.getMonth() || 
+            ($fechaActual.getMonth() === $FechaNacimiento.getMonth() && 
+            $fechaActual.getDate() < $FechaNacimiento.getDate())
+            ? $diferencia - 1 
+            : $diferencia;
+
+    document.getElementById("Edad").value=$edad;
+    })
+</script>

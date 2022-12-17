@@ -66,6 +66,7 @@ class AdminPacientesController
                 $user = $usuario->searchUser($email);
                 if ($resultado) {
                     //REGISTRAR PACIENTE
+                    
                     $paciente->Registrar($user->id);
                     header('Location: /admin/pacientes');
                 }
