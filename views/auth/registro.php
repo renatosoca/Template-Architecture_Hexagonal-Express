@@ -60,10 +60,6 @@
         <input type="text" name="paciente[Usuario]" id="" placeholder="Usuario"  />
       </div>
 
-      <div class="contraseña">
-        <input type="password" name="usuario[pass]" id="" placeholder="Contraseña"  />
-      </div>
-
       <input type="hidden" name="usuario[tipo_usuario]" id="" placeholder="Contraseña"  value="2"/>
 
       <div>

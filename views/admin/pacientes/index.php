@@ -39,9 +39,6 @@
           Agregar Paciente
         </button>
 
-        <a href="#" class="btn btn-primary" onclick="window.print()">
-          <i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte
-        </a>
         <a href="/pacientes/reporte" class="btn btn-primary">
           <i class="fas fa-download fa-sm text-white-50"></i> Generar Excel
         </a>
@@ -51,7 +48,7 @@
         <div class="col-2 text-end">
           <label  class="col-form-label">Buscar DNI:</label>
         </div>
-        
+
         <div class="col-2">
           <input class="form-control" type="text" placeholder="DNI"  id="myInput" onkeyup="BuscarDNI()" >
         </div>

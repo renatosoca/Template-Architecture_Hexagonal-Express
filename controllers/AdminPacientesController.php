@@ -13,15 +13,7 @@ use Model\RecetaMedica;
 
 class AdminPacientesController
 {
-    public static function reporte(Router $router)
-    {
-
-        $router->render('admin/pacientes/excel_paciente', 'layout-reporte', [
-
-        ]);
-
-    }
-
+    
     public static function index(Router $router)
     {
         $paciente = Paciente::all();
@@ -66,7 +58,7 @@ class AdminPacientesController
                 $user = $usuario->searchUser($email);
                 if ($resultado) {
                     //REGISTRAR PACIENTE
-                    
+
                     $paciente->Registrar($user->id);
                     header('Location: /admin/pacientes');
                 }

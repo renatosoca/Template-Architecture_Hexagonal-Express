@@ -36,6 +36,10 @@
           <i class="fas fa-user-plus"></i>
           Agregar Médicos
         </button>
+
+        <a href="/medicos/reporte" class="btn btn-primary">
+          <i class="fas fa-download fa-sm text-white-50"></i> Generar Excel
+        </a>
       </div>
 
       <div class="mb-3 row">
