@@ -22,24 +22,26 @@ function validarTipoContenido($tipo)
     return in_array($tipo, $tipos);
 }
 
-function mostrarNotificaciones($codigo)
+function conexionEmail($mail)
 {
-    $mensaje = '';
-    switch ($codigo) {
-        case '1':
-            $mensaje = 'Creado Correctamente';
-            break;
-        case '2':
-            $mensaje = 'Actualizado Correctamente';
-            break;
-        case '3':
-            $mensaje = 'Eliminado Correctamente';
-            break;
-        default:
-            $mensaje = false;
-            break;
-    }
-    return $mensaje;
+    //CONFIG SMTP
+    $mail->isSMTP();
+    $mail->Host = 'smtp.mailtrap.io';
+    $mail->Port = 2525;
+    $mail->SMTPAuth = true;
+    $mail->Username = '4a8895ebea0bc9';
+    $mail->Password = 'a24423000737a7';
+    $mail->SMTPSecure = 'tls';
+}
+
+function configEnvioEmail($mail, $email, $name, $mensaje)
+{
+    $mail->setFrom('admin@hospital.com');
+    $mail->addAddress('' . $email . '', '' . $name . '');
+    $mail->Subject = $mensaje;
+
+    $mail->isHTML(true);
+    $mail->CharSet = 'UTF-8';
 }
 
 function Redireccionar(string $url)

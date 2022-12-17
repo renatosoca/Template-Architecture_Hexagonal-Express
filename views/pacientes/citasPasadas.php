@@ -2,7 +2,7 @@
 <div class="container-fluid contenedor-principal">
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">CITAS PASADAS:</h1>
+    <h1 class="h3 mb-0 text-gray-800">Citas Pasadas:</h1>
   </div>
   <!--Fin Page Heading -->
 
@@ -24,8 +24,8 @@
           <tr>
             <th scope="col">Especialidad</th>
             <th scope="col">Doctor</th>
-            <th scope="col">Diagnostico</th>
-            <th scope="col">Dia</th>
+            <th scope="col">Diagnóstico</th>
+            <th scope="col">Día</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>
@@ -41,7 +41,7 @@
                 <form action="/paciente/detallemedico" method="post">
                   <input type="text" name="IDCita" value="<?php echo $row->id ?>" hidden>
                   <button type="submit" class="btn btn-primary">
-                    FICHA
+                    Ficha Médica
                   </button>
                 </form>
               </td>

@@ -37,14 +37,6 @@
                             <option value="0" disabled="" selected>Seleccione Fecha</option>
                         </select>
                     </div>
-
-                    <div class="row">
-                        <div class="col-1"></div>
-
-                        <input type="submit" class="col btn btn-primary" value="Mostrar Resultados">
-
-                        <div class="col-1"></div>
-                    </div>
                 </form>
             </div>
 

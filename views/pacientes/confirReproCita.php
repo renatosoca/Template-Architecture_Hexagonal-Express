@@ -26,11 +26,10 @@
 
             <div class="row">
               <div class="col-6"><input type="button" class="col btn btn-danger" value="Retroceder"></div>
+
               <div class="col-6"><input type="submit" class="col btn btn-primary" value="Confirmar Cita"> </div>
             </div>
-
           </form>
-
         </div>
       </div>
     </div>

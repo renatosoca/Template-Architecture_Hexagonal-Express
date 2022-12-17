@@ -29,7 +29,7 @@
             $this->ID_Horario = $args['ID_Horario'] ?? '';
             $this->Area = $args['Area'] ?? '';
             $this->Fecha_Creacion = $args['Fecha_Creacion'] ?? '';
-            $this->Estado = $args['Estado'] ?? '';
+            $this->Estado = $args['Estado'] ?? 'Espera';
             $this->Fecha_Cita = $args['Fecha_Cita'] ?? '';
             $this->Hora_Cita = $args['Hora_Cita'] ?? '';
             $this->NombrePaciente = $args['NombrePaciente'] ?? '';
@@ -41,16 +41,11 @@
 
         public function Registrar() {
 
-            //Registrar al nueva cita
-
-            $this->Estado="Espera";
-
+            //Registrar a la nueva cita
             $query = "INSERT INTO " . self::$tabla . " (ID_Paciente, ID_Medico, ID_Horario, Area, Estado) VALUES 
                                                         ('$this->ID_Paciente','$this->ID_Medico','$this->ID_Horario','$this->Area','$this->Estado')";
             $resultado = self::$db->query($query);
 
-            
             return $resultado;
         }
-
     }

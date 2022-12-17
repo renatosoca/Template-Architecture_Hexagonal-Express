@@ -2,7 +2,7 @@
 <div class="container-fluid contenedor-principal">
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">CITAS PENDIENTES:</h1>
+    <h1 class="h3 mb-0 text-gray-800">Citas Pendientes:</h1>
 
     <a class="btn btn-primary" data-bs-toggle="modal" href="#agregarCita" role="button">
       <i class="fas fa-user-plus"></i>
@@ -37,34 +37,34 @@ foreach ($medicos as $row) {
       <div class="row">
         <div class="col-sm-12">
           <h5 style="color: darkred; font-weight: bolder; font-size: 22px;">
-            CODIGO CITA: <?php echo $row->id ?>
+            Código Cita: <?php echo '000000'.$row->id ?>
           </h5>
         </div>
       </div>
 
       <div class="row" style="margin-bottom: 10px;">
         <div class="col-sm-5">
-          <p>ESPECIALIDAD: <?php echo $row->Area ?> </p>
+          <p>Especialidad: <?php echo $row->Area ?> </p>
         </div>
 
         <div class="col-sm-5">
-          <p>FECHA: <?php echo $row->Fecha_Cita ?> </p>
+          <p>Fecha: <?php echo $row->Fecha_Cita ?> </p>
         </div>
 
         <div class="col-sm-2">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reprogramarCita" <?php echo "onclick='ReprogramarCita(\"" . implode(",", (array)$row) . "\",\"" . implode(",", (array)$horario) . "\")'" ?>>
-            REPROGRAMAR
+            Reprogramar
           </button>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-5">
-          <p>MÉDICO: <?php echo $row->NombreMedico ?> </p>
+          <p>Médico: <?php echo $row->NombreMedico ?> </p>
         </div>
 
         <div class="col-sm-5">
-          <p>HORA:<?php echo $row->Hora_Cita ?> </p>
+          <p>Hora:<?php echo $row->Hora_Cita ?> </p>
         </div>
 
         <div class="col-sm-2">

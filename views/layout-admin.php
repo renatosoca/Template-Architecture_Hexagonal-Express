@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Hospital San Jose</title>
+    <title>Hospital San José</title>
 
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/b355a0cb3a.js" crossorigin="anonymous"></script>
@@ -38,7 +36,7 @@
                     <img src="/build/images/Logo_hospital_San_José_del_Callao.svg.png" width="50px" alt="">
                 </div>
 
-                <div class="sidebar-brand-text mx-3">HOSPITAL SAN JOSÉ</div>
+                <div class="sidebar-brand-text mx-3">Hospital San José</div>
             </a>
 
             <!-- Divider -->
@@ -107,32 +105,6 @@
 
     </div>
     <!-- End of Content Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Cerrar Sesion(Modal)-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.
-
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="/logout">Cerrar Sesión</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Custom scripts for all pages-->
     <script src="/build/js/sb-admin-2.min.js"></script>

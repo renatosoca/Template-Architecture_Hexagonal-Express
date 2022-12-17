@@ -8,19 +8,14 @@
       </div>
 
       <div class="modal-body">
-
         <div class="row">
           <div id="Reprogramar">
-
-            <p><b class="span">DNI: <?php echo $paciente->Nr_Doc ?></b><b class="span">Paciente: <?php echo $paciente->Nombre ?></b></p>
-
+            <p><b class="span">DNI: <?php echo $paciente->Nr_Doc ?></b><b class="span">Paciente: <?php echo $paciente->Nombre ?></b>
+            </p>
           </div>
+
           <div>
-
-
             <div class="row">
-
-
               <span class="col-2"><b>Fechas:</b></span><select name="" class="col-4" id="FechaReprogramar" required>
                 <option value="0" disabled="" selected>Seleccione Fecha</option>
               </select>
@@ -39,20 +34,15 @@
                       <th scope="col">Reprogramar</th>
                     </tr>
                   </thead>
-                  <tbody id="ElegirReprogramacion">
 
+                  <tbody id="ElegirReprogramacion">
 
                   </tbody>
                 </table>
               </div>
-
-
-
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   </div>

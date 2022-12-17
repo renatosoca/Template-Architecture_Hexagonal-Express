@@ -39,23 +39,6 @@
                             <option value="0" disabled="" selected>Seleccione Fecha</option>
                         </select>
                     </div>
-
-                    <div class="row">
-                        <span>&nbsp;&nbsp;&nbsp;Use el Siguiente Calendario como guía (Opcional):</span>
-
-                        <div class="root">
-                            <div class="calendar" id="calendar">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-1"></div>
-
-                            <input type="submit" class="col btn btn-primary" value="Mostrar Resultados">
-
-                            <div class="col-1"></div>
-                        </div>
-                    </div>
                 </form>
             </div>
 
@@ -73,6 +56,7 @@
                             </thead>
 
                             <tbody id="Reservar">
+                                
                             </tbody>
                         </table>
                     </div>

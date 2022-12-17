@@ -9,7 +9,9 @@ use Model\Medico;
 use Model\Horario;
 use Model\DetalleMedico;
 use Model\Especialidades;
+use Model\Login;
 use Model\RecetaMedica;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class PacienteController
 {
@@ -77,15 +79,45 @@ class PacienteController
     public static function registrarcita()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $auth = new Cita($_POST['cita']);
+            $paciente = Paciente::find($auth->ID_Paciente);
+            $medico = Medico::find($auth->ID_Medico);
+            $horario = Horario::find($auth->ID_Horario);
+            $login = Login::find($paciente->id_login);
             $resultado = $auth->Registrar();
 
             if ($resultado) {
                 $horario = Horario::find($_POST['ID_Horario']);
                 $horario->CambiarEstadoHorario();
 
-                header('Location: /paciente');
+                $mail = new PHPMailer();
+
+                //CONFIG SMTP
+                conexionEmail($mail);
+
+                //CONTENIDO DEL EMAIL Y HABILITAR HTML
+                $mensaje = 'Se a registrado tu cita correctamente !';
+                configEnvioEmail($mail, $login->email, $paciente->name, $mensaje);
+
+                //DEFINIR CONTENIDO
+                $contenido = '<html>';
+                $contenido .= '<p>Hola ' . $paciente->Nombre . ' ' . $paciente->Ape_Paterno . ' !' . '</p>';
+                $contenido .= '<p>Detalles de la programación de tu cita</p>';
+                $contenido .= '<p>La especialidad que escogiste: ' . $auth->Area . '</p>';
+                $contenido .= '<p>Tu médico de cabezera es: ' . $medico->Nombre . ' ' . $medico->Ape_Paterno . '</p>';
+                $contenido .= '<p>Fecha de tu cita: ' . $horario->Fecha . '</p>';
+                $contenido .= '<p>Hora de tu cita: ' . $horario->Hora . '</p>';
+                $contenido .= '</html>';
+
+                $mail->Body = $contenido;
+                $mail->AltBody = 'Texto de relleno';
+
+                //ENVIAR EMAIL
+                if ($mail->send()) {
+                    header('Location: /paciente');
+                } else {
+                    echo "Ocurrio un Error!";
+                }
             }
         }
     }
@@ -116,6 +148,9 @@ class PacienteController
 
             $auth = new Cita($_POST['cita']);
             $resultado = $auth->Registrar();
+            $paciente = Paciente::find($auth->ID_Paciente);
+            $horario = Horario::find($auth->ID_Horario);
+            $login = Login::find($paciente->id_login);
 
             if ($resultado) {
 
@@ -128,7 +163,34 @@ class PacienteController
                 $horarioActivar = Horario::find($_POST['idhoraActiva']);
                 $horarioActivar->ActivarEstadoHorario();
 
-                header('Location: /paciente');
+                if ($horarioActivar) {
+                    $mail = new PHPMailer();
+
+                    //CONFIG SMTP
+                    conexionEmail($mail);
+
+                    //CONTENIDO DEL EMAIL Y HABILITAR HTML
+                    $mensaje = 'Se a reprogramado tu cita correctamente !';
+                    configEnvioEmail($mail, $login->email, $paciente->name, $mensaje);
+
+                    //DEFINIR CONTENIDO
+                    $contenido = '<html>';
+                    $contenido .= '<p>Hola ' . $paciente->Nombre . ' ' . $paciente->Ape_Paterno . ' !' . '</p>';
+                    $contenido .= '<p>Detalles de la reprogramación de tu cita</p>';
+                    $contenido .= '<p>La fecha actualizada de tu cita: ' . $horario->Fecha . '</p>';
+                    $contenido .= '<p>La Hora actualizada de tu cita: ' . $horario->Hora . '</p>';
+                    $contenido .= '</html>';
+
+                    $mail->Body = $contenido;
+                    $mail->AltBody = 'Texto de relleno';
+
+                    //ENVIAR EMAIL
+                    if ($mail->send()) {
+                        header('Location: /paciente');
+                    } else {
+                        echo "Ocurrio un Error!";
+                    }
+                }
             }
         }
     }
