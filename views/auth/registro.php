@@ -57,7 +57,7 @@
       </div>
 
       <div class="usuario">
-        <input type="text" name="paciente[Usuario]" id="" placeholder="Usuario"  />
+        <input type="pass" name="usuario[pass]" id="" placeholder="contraseña"  />
       </div>
 
       <input type="hidden" name="usuario[tipo_usuario]" id="" placeholder="Contraseña"  value="2"/>
