@@ -49,10 +49,11 @@
 
       <div class="mb-3 row">
         <div class="col-2 text-end">
-        <label  class="col-form-label">Buscar DNI:</label>
+          <label  class="col-form-label">Buscar DNI:</label>
         </div>
+        
         <div class="col-2">
-        <input class="form-control" type="text" placeholder="DNI"  id="myInput" onkeyup="BuscarDNI()" >
+          <input class="form-control" type="text" placeholder="DNI"  id="myInput" onkeyup="BuscarDNI()" >
         </div>
       </div>
 
@@ -60,7 +61,7 @@
       <div class="card shadow mb-4">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0" data-order='[[ 0, "asc" ]]' data-page-length='10'>
               <thead>
                 <tr>
                   <th>DNI</th>
