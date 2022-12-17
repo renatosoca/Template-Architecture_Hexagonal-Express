@@ -2,7 +2,7 @@
 include("conexion.php");
 $usuarios="SELECT * FROM paciente";
 header("Content-Type: application/xls; charset=iso-8859-1");
-header("Content-Disposition: attachment; filename=datos-paciente.xls");
+header("Content-Disposition: attachment; filename=datos-citas.xls");
 ?>
 <table>
 <caption>Datos del Paciente</caption>
