@@ -16,7 +16,7 @@ class AdminPacientesController
     public static function reporte(Router $router)
     {
 
-        $router->render('admin/pacientes/excel_paciente', 'layout-admin', [
+        $router->render('admin/pacientes/excel_paciente', 'layout-reporte', [
 
         ]);
 
