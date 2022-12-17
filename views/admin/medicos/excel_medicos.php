@@ -7,6 +7,7 @@ header("Content-Disposition: attachment; filename=datos-medicos.xls");
 <table>
 <caption>Datos del Paciente</caption>
 <tr>
+    <th>ID_Medico</th>
     <th>Nombre</th>
     <th>Apellido Paterno</th>
     <th>Apellido Materno</th>
@@ -20,7 +21,7 @@ header("Content-Disposition: attachment; filename=datos-medicos.xls");
 <?php $resultado = mysqli_query($conexion, $usuarios);
 while ($row = mysqli_fetch_assoc($resultado)) { ?>
  <tr>
-    
+    <td><?php echo $row["id"]; ?></td>
     <td><?php echo $row["Nombre"]; ?></td>
     <td><?php echo $row["Ape_Paterno"]; ?></td>
     <td><?php echo $row["Ape_Materno"]; ?></td>
