@@ -25,6 +25,7 @@
     $router->get('/admin/index', [AdminPacientesController::class, 'index']);
     //Paginas de ADMIN, parte pacientes
     $router->get('/admin/pacientes', [AdminPacientesController::class, 'pacientes']);
+    $router->get('/pacientes/reporte', [AdminPacientesController::class, 'reporte']);
     $router->post('/pacientes/registrar', [AdminPacientesController::class, 'pacientesRegistrar']);
     $router->post('/pacientes/eliminar', [AdminPacientesController::class, 'pacientesEliminar']);
     $router->post('/pacientes/actualizar', [AdminPacientesController::class, 'pacientesActualizar']);
